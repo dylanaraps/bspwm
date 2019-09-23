@@ -1,5 +1,5 @@
 VERCMD  ?= git describe --tags 2> /dev/null
-VERSION := $(shell $(VERCMD) || cat VERSION)
+VERSION := 0.9.9
 
 CPPFLAGS += -D_POSIX_C_SOURCE=200809L -DVERSION=\"$(VERSION)\"
 CFLAGS   += -std=c99 -pedantic -Wall -Wextra -DJSMN_STRICT
