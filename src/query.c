@@ -76,6 +76,7 @@ void query_monitor(monitor_t *m, FILE *rsp)
 	fprintf(rsp, "\"stickyCount\":%i,", m->sticky_count);
 	fprintf(rsp, "\"windowGap\":%i,", m->window_gap);
 	fprintf(rsp, "\"borderWidth\":%u,", m->border_width);
+	fprintf(rsp, "\"borderRadius\":%u,", m->border_radius);
 	fprintf(rsp, "\"focusedDesktopId\":%u,", m->desk->id);
 	fprintf(rsp, "\"padding\":");
 	query_padding(m->padding, rsp);
@@ -104,6 +105,7 @@ void query_desktop(desktop_t *d, FILE *rsp)
 	fprintf(rsp, "\"userLayout\":\"%s\",", LAYOUT_STR(d->user_layout));
 	fprintf(rsp, "\"windowGap\":%i,", d->window_gap);
 	fprintf(rsp, "\"borderWidth\":%u,", d->border_width);
+	fprintf(rsp, "\"borderRadius\":%u,", d->border_radius);
 	fprintf(rsp, "\"focusedNodeId\":%u,", d->focus != NULL ? d->focus->id : 0);
 	fprintf(rsp, "\"padding\":");
 	query_padding(d->padding, rsp);
@@ -167,6 +169,7 @@ void query_client(client_t *c, FILE *rsp)
 		fprintf(rsp, "\"className\":\"%s\",", c->class_name);
 		fprintf(rsp, "\"instanceName\":\"%s\",", c->instance_name);
 		fprintf(rsp, "\"borderWidth\":%u,", c->border_width);
+		fprintf(rsp, "\"borderRadius\":%u,", c->border_radius);
 		fprintf(rsp, "\"state\":\"%s\",", STATE_STR(c->state));
 		fprintf(rsp, "\"lastState\":\"%s\",", STATE_STR(c->last_state));
 		fprintf(rsp, "\"layer\":\"%s\",", LAYER_STR(c->layer));
