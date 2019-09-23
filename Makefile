@@ -9,10 +9,6 @@ LDLIBS    = $(LDFLAGS) -lm -lxcb -lxcb-util -lxcb-keysyms -lxcb-icccm -lxcb-ewmh
 PREFIX    ?= /usr/local
 BINPREFIX ?= $(PREFIX)/bin
 MANPREFIX ?= $(PREFIX)/share/man
-DOCPREFIX ?= $(PREFIX)/share/doc/bspwm
-BASHCPL   ?= $(PREFIX)/share/bash-completion/completions
-FISHCPL   ?= $(PREFIX)/share/fish/vendor_completions.d
-ZSHCPL    ?= $(PREFIX)/share/zsh/site-functions
 
 MD_DOCS    = README.md doc/CHANGELOG.md doc/CONTRIBUTING.md doc/INSTALL.md doc/MISC.md doc/TODO.md
 XSESSIONS ?= $(PREFIX)/share/xsessions
@@ -65,32 +61,12 @@ install:
 	mkdir -p "$(DESTDIR)$(MANPREFIX)"/man1
 	cp -p man/bspwm.1 "$(DESTDIR)$(MANPREFIX)"/man1
 	ln -s bspwm.1 "$(DESTDIR)$(MANPREFIX)"/man1/bspc.1
-	mkdir -p "$(DESTDIR)$(BASHCPL)"
-	cp -p contrib/bash_completion "$(DESTDIR)$(BASHCPL)"/bspc
-	mkdir -p "$(DESTDIR)$(FISHCPL)"
-	cp -p contrib/fish_completion "$(DESTDIR)$(FISHCPL)"/bspc.fish
-	mkdir -p "$(DESTDIR)$(ZSHCPL)"
-	cp -p contrib/zsh_completion "$(DESTDIR)$(ZSHCPL)"/_bspc
-	mkdir -p "$(DESTDIR)$(DOCPREFIX)"
-	cp -p $(MD_DOCS) "$(DESTDIR)$(DOCPREFIX)"
-	mkdir -p "$(DESTDIR)$(DOCPREFIX)"/examples
-	cp -pr examples/* "$(DESTDIR)$(DOCPREFIX)"/examples
-	mkdir -p "$(DESTDIR)$(XSESSIONS)"
-	cp -p contrib/freedesktop/bspwm.desktop "$(DESTDIR)$(XSESSIONS)"
 
 uninstall:
 	rm -f "$(DESTDIR)$(BINPREFIX)"/bspwm
 	rm -f "$(DESTDIR)$(BINPREFIX)"/bspc
 	rm -f "$(DESTDIR)$(MANPREFIX)"/man1/bspwm.1
 	rm -f "$(DESTDIR)$(MANPREFIX)"/man1/bspc.1
-	rm -f "$(DESTDIR)$(BASHCPL)"/bspc
-	rm -f "$(DESTDIR)$(FISHCPL)"/bspc.fish
-	rm -f "$(DESTDIR)$(ZSHCPL)"/_bspc
-	rm -rf "$(DESTDIR)$(DOCPREFIX)"
-	rm -f "$(DESTDIR)$(XSESSIONS)"/bspwm.desktop
-
-doc:
-	a2x -v -d manpage -f manpage -a revnumber=$(VERSION) doc/bspwm.1.asciidoc
 
 clean:
 	rm -f $(WM_OBJ) $(CLI_OBJ) bspwm bspc
