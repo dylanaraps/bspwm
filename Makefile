@@ -63,8 +63,8 @@ install:
 	cp -pf bspwm "$(DESTDIR)$(BINPREFIX)"
 	cp -pf bspc "$(DESTDIR)$(BINPREFIX)"
 	mkdir -p "$(DESTDIR)$(MANPREFIX)"/man1
-	cp -p doc/bspwm.1 "$(DESTDIR)$(MANPREFIX)"/man1
-	cp -Pp doc/bspc.1 "$(DESTDIR)$(MANPREFIX)"/man1
+	cp -p man/bspwm.1 "$(DESTDIR)$(MANPREFIX)"/man1
+	ln -s bspwm.1 "$(DESTDIR)$(MANPREFIX)"/man1/bspc.1
 	mkdir -p "$(DESTDIR)$(BASHCPL)"
 	cp -p contrib/bash_completion "$(DESTDIR)$(BASHCPL)"/bspc
 	mkdir -p "$(DESTDIR)$(FISHCPL)"
